@@ -3,7 +3,7 @@ categories = ['Savings', 'Rent', 'Electricity']
 categories_amount = []
 categories_percentage = []
 
-start = input('Do you want to start? (Yes/No) ')
+start = input('Do you want to start? (Yes/No) ').strip().lower()
 
 while start == 'yes':
     while True:
@@ -21,7 +21,7 @@ while start == 'yes':
         while True:
             try:
                 percentage = float(input(f'Enter the percentage of {categories[i]}: '))
-                if percentage >= 0 and percentage <= 100:
+                if 0 <= percentage <= 100:
                     categories_percentage.append(percentage)
                     amount = (percentage * salary) / 100
                     categories_amount.append(amount)
@@ -45,11 +45,11 @@ while start == 'yes':
     yearly_electricity_cost = categories_amount[2] * 12
     
     while remainder > 0:
-        extra_saving = input("\nDo you have extra savings? (Yes/No) ")
+        extra_saving = input("\nDo you have extra savings? (Yes/No) ").strip().lower()
         if extra_saving == 'yes':
             try:
                 extra_saving_amount = float(input('Enter the extra saving amount: '))
-                if extra_saving_amount > 0 and extra_saving_amount <= remainder:
+                if 0 < extra_saving_amount <= remainder:
                     remainder -= extra_saving_amount
                     total_expenses += extra_saving_amount
                     categories_amount[0] += extra_saving_amount
@@ -80,7 +80,7 @@ while start == 'yes':
     categories_amount.clear()
     categories_percentage.clear()
    
-    start = input('Do you want to continue? (Yes/No) ')
+    start = input('Do you want to continue? (Yes/No) ').strip().lower()
 
 
 

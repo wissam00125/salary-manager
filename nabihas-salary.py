@@ -29,6 +29,24 @@ while start == 'yes':
                     print("Percentage should be between 0 and 100")
             except:
                 print("Please enter a numerical value")
+                
+                
+    total_expenses = sum(categories_amount)
+    total_percentage = sum(categories_percentage)
+    if(total_percentage > 100):
+        print("Total percentage exceeds 100, please try again")
+        categories_amount.clear()
+        categories_percentage.clear()
+        continue    # skip the rest of current iteration and start new one(while)
+    
+    remainder = salary - total_expenses
+    yearly_rent_cost = categories_amount[1] * 12
+    yearly_electricity_cost = categories_amount[2] * 12
+    print('Total expenses: $', total_expenses)
+    print('Remmainder: $', remainder)
+    print('Yearly rent cost $', yearly_rent_cost)
+    print('yearly electricity cost $', yearly_electricity_cost)
+    
     start = input('Do you want to continue? (Yes/No) ')
 
 

@@ -14,6 +14,7 @@ while start == 'yes':
                 break  # exit from loop
             else: print('Salary must be greater than zero. Please try again')
         except: print('Please enter a valid salary') 
+        
     month = input('Please enter the name of the month: ')
     
     for i in range(3):
@@ -34,7 +35,7 @@ while start == 'yes':
     total_expenses = sum(categories_amount)
     total_percentage = sum(categories_percentage)
     if(total_percentage > 100):
-        print("Total percentage exceeds 100, please try again")
+        print("\nTotal percentage exceeds 100%. Please try again\n")
         categories_amount.clear()
         categories_percentage.clear()
         continue    # skip the rest of current iteration and start new one(while)
@@ -44,10 +45,10 @@ while start == 'yes':
     yearly_electricity_cost = categories_amount[2] * 12
     
     while remainder > 0:
-        extra_saving = input("Do you have extra savings? (Yes/No) ")
+        extra_saving = input("\nDo you have extra savings? (Yes/No) ")
         if extra_saving == 'yes':
             try:
-                extra_saving_amount = float(input('Enter the extra saving amount in USD: '))
+                extra_saving_amount = float(input('Enter the extra saving amount: '))
                 if extra_saving_amount > 0 and extra_saving_amount <= remainder:
                     remainder -= extra_saving_amount
                     total_expenses += extra_saving_amount
@@ -62,13 +63,23 @@ while start == 'yes':
         else:
             print('Please enter Yes or No only')
             
-    categories_amount.clear()
-    categories_percentage.clear()      
-    print('Total expenses: $', total_expenses)
-    print('Remmainder: $', remainder)
-    print('Yearly rent cost $', yearly_rent_cost)
-    print('yearly electricity cost $', yearly_electricity_cost)
+    print(f'\nFinancial Summary for {month}')
+    print('--------------------------------------------')
+    print(f'Salary for the month: ${salary}\n')
+    print(f'Saving: ${categories_amount[0]}\nRent: ${categories_amount[1]}\nElectricity: ${categories_amount[2]}')
+
+    print(f'Total expenses: ${total_expenses}')
+    print(f'Remaining balance after expenses: ${remainder}')
+
+    print(f'\nEstimated yearly costs:\n\tRent: ${yearly_rent_cost}\n\tElectricity: ${yearly_electricity_cost}\n')
+    print(f'Your total salary squared (just for fun!): ${salary ** 2}')
     
+    if remainder == 0: 
+        print('You spent all of your salary!!') 
+    
+    categories_amount.clear()
+    categories_percentage.clear()
+   
     start = input('Do you want to continue? (Yes/No) ')
 
 
